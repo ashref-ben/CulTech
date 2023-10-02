@@ -119,4 +119,9 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
         System.out.println( "new password Set successfully Login with the new password");
     }
+
+    public ApplicationUser getByUserId(Integer id) {
+        ApplicationUser user=userRepository.getById(id);
+        return user;
+    }
 }

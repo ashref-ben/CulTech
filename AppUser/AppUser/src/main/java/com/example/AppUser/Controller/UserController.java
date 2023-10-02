@@ -1,6 +1,7 @@
 package com.example.AppUser.Controller;
 
 import com.example.AppUser.dtos.UserDto;
+import com.example.AppUser.models.ApplicationUser;
 import com.example.AppUser.services.UserService;
 import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
@@ -60,6 +61,13 @@ public class UserController {
     public UserDto getUserInfo() {
         return userService.getUserByToken();
     }
+
+    @GetMapping("/{id}")
+    public ApplicationUser getUserById(@RequestParam("id") Integer id )
+    {
+        return userService.getByUserId(id);
+    }
+
 
     @DeleteMapping("/deleteMyAccount")
     @PreAuthorize("hasAnyRole('ADMIN','SUPER-ADMIN','USER','ORGANIZER')")// el kol

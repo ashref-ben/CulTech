@@ -27,6 +27,8 @@ public class Blog {
     @ElementCollection
     @CollectionTable(name = "blog_hashtags")
     private List<String> hashtags;
+
+    private Integer user_id;
     /*
     @ManyToOne
     @JoinColumn(name = "user_id")
