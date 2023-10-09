@@ -3,6 +3,9 @@ package com.example.participation.Controller;
 import com.example.participation.Entity.Participation;
 import com.example.participation.Service.ParticipationService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,28 +17,30 @@ public class ParticipationController {
     private final ParticipationService participationService;
 
     @GetMapping("/all")
-    public List<Participation> getAll() {
-        return participationService.getAll();
+    public ResponseEntity<List<Participation>> getAll() {
+        return new ResponseEntity<>(participationService.getAll(), HttpStatus.OK);
     }
+
     @PostMapping("/add")
-    public boolean add(@RequestBody Participation participation) {
-        return participationService.add(participation);
+    public ResponseEntity<Boolean> add(@RequestBody Participation participation) {
+        return new ResponseEntity<>(participationService.add(participation), HttpStatus.CREATED);
     }
     @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable Long id) {
-        return participationService.delete(id);
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) {
+        return new ResponseEntity<>(participationService.delete(id), HttpStatus.OK);
     }
     @PutMapping("/update")
-    public Boolean update(@RequestBody Participation participation) {
-        return participationService.update(participation);
+    public ResponseEntity<Boolean> update(@RequestBody Participation participation) {
+        return new ResponseEntity<>(participationService.update(participation), HttpStatus.ACCEPTED);
     }
     @GetMapping("/getId")
-    public Long getId(@RequestBody Participation participation){
-        return participationService.getId(participation);
+    public ResponseEntity<Long> getId(@RequestBody Participation participation){
+        return new ResponseEntity<>(participationService.getId(participation), HttpStatus.FOUND);
     }
     @GetMapping("/getParticipation/{id}")
-    public Participation getParticipation(@PathVariable("id") Long id){
-        return participationService.getParticipation(id);
+    public ResponseEntity<Participation> getParticipation(@PathVariable("id") Long id){
+        return new ResponseEntity<>(participationService.getParticipation(id), HttpStatus.FOUND);
     }
+
 
 }

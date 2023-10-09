@@ -3,6 +3,8 @@ package com.example.Event.Controller;
 import com.example.Event.Entity.Events;
 import com.example.Event.Service.EventsService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,36 +15,30 @@ import java.util.List;
 @RequestMapping("/Event")
 public class EventController {
     private final EventsService eventsService;
-    @GetMapping("/hey")
-    public String getAnonymous() {
-        String ok="Im Event";
-        System.out.println(ok);
-        return ok;
-    }
     @GetMapping("/all")
-    public List<Events> getAll() {
-     return eventsService.getAll();
+    public ResponseEntity<List<Events>> getAll() {
+     return new ResponseEntity<>(eventsService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public boolean add(@RequestBody Events events) {
-        return eventsService.add(events);
+    public ResponseEntity<Boolean> add(@RequestBody Events events) {
+        return new ResponseEntity<>(eventsService.add(events), HttpStatus.CREATED);
     }
     @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable Long id) {
-        return eventsService.delete(id);
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) {
+        return new ResponseEntity<>(eventsService.delete(id), HttpStatus.OK);
     }
     @PutMapping("/update")
-    public Boolean update(@RequestBody Events events) {
-        return eventsService.update(events);
+    public ResponseEntity<Boolean> update(@RequestBody Events events) {
+        return new ResponseEntity<>(eventsService.update(events), HttpStatus.ACCEPTED);
     }
     @GetMapping("/getId")
-    public Long getId(@RequestBody Events events){
-        return eventsService.getId(events);
+    public ResponseEntity<Long> getId(@RequestBody Events events){
+        return new ResponseEntity<>(eventsService.getId(events), HttpStatus.FOUND);
     }
     @GetMapping("/getEvent/{id}")
-    public Events getEvent(@PathVariable("id") Long id){
-        return eventsService.getEvent(id);
+    public ResponseEntity<Events> getEvent(@PathVariable("id") Long id){
+        return new ResponseEntity<>(eventsService.getEvent(id), HttpStatus.FOUND);
     }
 
 }
