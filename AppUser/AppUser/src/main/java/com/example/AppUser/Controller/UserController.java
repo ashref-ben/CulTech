@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 @RestController
 @Slf4j
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
