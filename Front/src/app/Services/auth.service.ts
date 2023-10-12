@@ -18,6 +18,20 @@ export class AuthService {
   private baseUrl = 'http://localhost:8070/user/auth'; // Replace with your server URL
 
   constructor(private http: HttpClient, private route: Router) {
+    this.loadAuthenticationState();
+  }
+  loadAuthenticationState() {
+    const storedToken = localStorage.getItem('jwt');
+
+    if (storedToken) {
+      this.isAuthenticated = true;
+      this.accessToken = storedToken;
+      let decodedJwt: any = jwtDecode(this.accessToken);
+      this.username = decodedJwt.sub;
+      this.id = decodedJwt.userId;
+      this.roles = decodedJwt.roles;
+      this.redirectBasedOnRoles();
+    }
   }
 
   registerUser(username: string, password: string): Observable<any> {
@@ -32,6 +46,7 @@ export class AuthService {
   loadprofile(data: any) {
     this.isAuthenticated = true;
     this.accessToken = data['jwt'];
+    localStorage.setItem('jwt',this.accessToken)
     let decodedJwt: any = jwtDecode(this.accessToken);
     this.username = decodedJwt.sub;
     this.id = decodedJwt.userId;
@@ -55,8 +70,10 @@ export class AuthService {
 
   logout() {
     this.isAuthenticated = false;
-    this.accessToken = undefined;
-    this.username = undefined;
-    this.roles = undefined;
+    this.accessToken = "";
+    this.username = "";
+    this.roles = "";
+    localStorage.removeItem('jwt'); // Remove the JWT token from local storage
+    this.route.navigateByUrl('/login'); // Redirect to the login page
   }
 }

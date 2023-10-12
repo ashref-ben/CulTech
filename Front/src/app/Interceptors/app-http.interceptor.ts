@@ -17,7 +17,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
     if(!request.url.includes("auth/login"))
     {
       let newreq = request.clone({
-        headers: request.headers.set('Authorization',`Bearer${localStorage.getItem('accessToken')}`)
+        headers: request.headers.set('Authorization',`Bearer${localStorage.getItem('jwt')}`)
       })
       return next.handle(newreq);
     }else return  next.handle(request);

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CultechGithub.iml" filepath="$PROJECT_DIR$/.idea/CultechGithub.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/CultechFrontAndBack.iml" filepath="$PROJECT_DIR$/.idea/CultechFrontAndBack.iml" />
     </modules>
   </component>
 </project>
