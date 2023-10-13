@@ -33,7 +33,7 @@ public class UserController {
         System.out.println(ok);
         return ok;
     }
-    @GetMapping("/list-users")
+    @GetMapping("/list-user")
     @PreAuthorize("hasAnyRole('ADMIN','SUPER-ADMIN','USER','ORGANIZER')")// el kol
     public List<UserDto> getusers() {
         List<UserDto> list = userService.getAllUsersByRoles("USER");
@@ -62,9 +62,10 @@ public class UserController {
     public UserDto getUserInfo() {
         return userService.getUserByToken();
     }
-
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','SUPER-ADMIN','USER','ORGANIZER')")// el kol
     public ApplicationUser getUserById(@RequestParam("id") Integer id )
+
     {
         return userService.getByUserId(id);
     }
