@@ -17,5 +17,5 @@ public class Reaction {
     private Integer idUser;
     private ReactionType reactionType;
     private ForWho forwho;
-    private Integer blogid;
+    private Integer blogid;//BLOG ID WALA COMMENT ID WALA AY 7KEYA BECH NORBETHA BIH
 }
