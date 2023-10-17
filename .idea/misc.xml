@@ -7,6 +7,11 @@
         <option value="$PROJECT_DIR$/Gateway/pom.xml" />
         <option value="$PROJECT_DIR$/EurekaServer/pom.xml" />
         <option value="$PROJECT_DIR$/AppUser/AppUser/pom.xml" />
+        <option value="$PROJECT_DIR$/Event/Event/pom.xml" />
+        <option value="$PROJECT_DIR$/Blog/Blog/pom.xml" />
+        <option value="$PROJECT_DIR$/Prog-ech/Prog-ech/pom.xml" />
+        <option value="$PROJECT_DIR$/partenariat/partenariat/pom.xml" />
+        <option value="$PROJECT_DIR$/Participation/pom.xml" />
       </list>
     </option>
   </component>

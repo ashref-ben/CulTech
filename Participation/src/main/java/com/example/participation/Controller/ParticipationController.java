@@ -1,10 +1,9 @@
-package com.example.participation.Controller;
+package Controller;
 
 import com.example.participation.Entity.Participation;
 import com.example.participation.Service.ParticipationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
