@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/User")
+@Slf4j
+@RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
     @GetMapping("/hey")
     public String getAnonymous() {
