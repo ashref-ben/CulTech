@@ -1,4 +1,4 @@
-package Controller;
+package com.example.participation.Controller;
 
 import com.example.participation.Entity.Participation;
 import com.example.participation.Service.ParticipationService;
