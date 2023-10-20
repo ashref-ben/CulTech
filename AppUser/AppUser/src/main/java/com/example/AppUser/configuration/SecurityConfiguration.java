@@ -2,10 +2,14 @@ package com.example.AppUser.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,8 +32,13 @@ import com.example.AppUser.utils.RSAKeyProperties;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+@EnableWebSecurity
+
 public class SecurityConfiguration {
 
     private final RSAKeyProperties keys;
@@ -54,10 +63,11 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
-                .csrf(csrf -> csrf.disable())
                 .cors()
                 .and()
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     auth.requestMatchers("/user/auth/**").permitAll();
                     auth.anyRequest().authenticated();
                 });
@@ -70,6 +80,22 @@ public class SecurityConfiguration {
         );
 
         return http.build();
+    }
+
+    @Configuration
+    @EnableWebMvc
+    public class WebConfig implements WebMvcConfigurer {
+
+        @Override
+        public void addCorsMappings(CorsRegistry corsRegistry) {
+            corsRegistry.addMapping("/**")
+                    .allowedOrigins("http://localhost:4200")
+                    .allowedMethods("*")
+                    .maxAge(3600L)
+                    .allowedHeaders("*")
+                    .exposedHeaders("Authorization")
+                    .allowCredentials(true);
+        }
     }
 
     @Bean

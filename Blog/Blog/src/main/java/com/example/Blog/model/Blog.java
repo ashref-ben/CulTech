@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import lombok.*;
 
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -31,4 +32,10 @@ public class Blog {
     @Lob
     @Column(length = 100000)
     private byte[] pictures;
+
+
+
+    //... other getters and setters ...
+
+
 }

@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Reaction }from "../../models/Reactions"
+import { Reaction, ReactionType }from "../../models/Reactions"
 import { User } from 'src/app/models/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReactionsService {
-  private apiUrl = 'http://localhost:8080';  // Base URL of your API (adapt accordingly)
+  private apiUrl = 'http://localhost:8045/Reactions';  // Base URL of your API (adapt accordingly)
 
   constructor(private http: HttpClient) {}
 
@@ -38,5 +38,12 @@ export class ReactionsService {
 
   deleteReaction(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
+  }
+  getReactionByBlogAndUser(userId: number, blogId: number): Observable<ReactionType> {
+    return this.http.get<ReactionType>(`${this.apiUrl}/blog_user/${userId}/${blogId}`);
+  
+  }
+  deleteReactionByBlogAndUser(iduser: number, idblog: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/deleteByBlogAndUser/${iduser}/${idblog}`);
   }
 }

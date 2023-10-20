@@ -1,1 +1,56 @@
-<p>blog works!</p>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<div class="card">
+    <form #orderForm="ngForm">
+        <div class="user-info">
+            <img src="./assets/img/avatars/8.jpg" alt="user image">
+            <div>
+                <input class="form-control" type="text" id="blogTitleInput" name="blogTitle" required
+                    [(ngModel)]="selectedBlog.title" placeholder="Your blog title">
+
+                <input class="form-control" type="text" id="country" name="blogcountry" required=""
+                    [(ngModel)]="selectedBlog.country" placeholder="Country your gona talk about ">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label cLabel for="exampleFormControlTextarea1">Description</label>
+            <textarea cFormControl id="exampleFormControlTextarea1" name="blogDescription" rows="3"
+                [(ngModel)]="selectedBlog.description"></textarea>
+        </div>
+
+
+        <div class="tag-input-container">
+            <span *ngFor="let fruit of selectedFruits" class="tag">
+                {{fruit}} <button (click)="removeFruit(fruit)">×</button>
+            </span>
+            <input name="newFruitInput" [(ngModel)]="selectedBlog.hashtags" (keyup.enter)="addFruit()"
+                placeholder="New tag...">
+        </div>
+        <div class="post-actions">
+            <input type="file" (change)="onFileChange($event)">
+            <button>📷Photo/Video</button>
+            <button (click)="submitBlog()">✅ Post</button>
+        </div>
+    </form>
+</div>
+<tr *ngFor='let p of list_blogs' class="card">
+    <div class="user-info">
+        <img src="./assets/img/avatars/8.jpg" alt="user image">
+        <h2>{{p.iduser}}</h2>
+    </div>
+    <div class="card">
+        <p>{{p.title}}</p>
+        <p>{{p.description}}</p>
+        <p>{{p.hashtags}}</p>
+    </div>
+    <div class="blog-image">
+        <img src="data:image/jpeg;base64,{{p.pictures}}" alt="Description of Image">
+    </div>
+
+    <div class="post-actions">
+        <button *ngIf="2=== p.iduser" type="button" class="btn btn-primary btn-round" (click)="delete(p.id)">Delete</button>
+        <button type="submit" class="btn btn-success btn-round" [routerLink]="['/blog', p.id]">plus des
+            information</button>
+    </div>
+</tr>

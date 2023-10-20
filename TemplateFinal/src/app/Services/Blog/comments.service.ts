@@ -8,7 +8,7 @@ import { Comment }from "../../models/Comment"
 })
 export class CommentsService {
 
-  private apiUrl = 'http://localhost:8085/Comments';  // Base URL of your API (adapt accordingly)
+  private apiUrl = 'http://localhost:8050/Comments';  // Base URL of your API (adapt accordingly)
 
   constructor(private http: HttpClient) {}
 

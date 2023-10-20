@@ -7,6 +7,8 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { HomeBoardComponent } from './FrontEnd/Home/home-board/home-board.component';
+import { BlogComponent } from './views/pages/blog/blog.component';
+import { OneBlogComponent } from './views/pages/one-blog/one-blog.component';
 
 const routes: Routes = [
   {
@@ -87,6 +89,21 @@ const routes: Routes = [
       title: 'Page 404'
     }
   },
+  {
+    path: 'blog',
+    component: BlogComponent,
+    data: {
+      title: 'blog'
+    }
+  },
+  {
+    path: 'blog/:id',
+    component: OneBlogComponent,
+    data: {
+      title: 'blog info'
+    }
+  }
+  ,
   {
     path: '500',
     component: Page500Component,

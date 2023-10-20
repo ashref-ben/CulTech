@@ -4,6 +4,7 @@ import com.example.Reactions.feign.UserDTO;
 import com.example.Reactions.model.Reaction;
 import com.example.Reactions.model.ReactionType;
 import com.example.Reactions.services.ReactionServices;
+import jakarta.ws.rs.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,7 @@ public class ReactionController {
         return reactionService.getAllReactionsofBlog(idblog);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/all_reactions")
     public List<Reaction> getAllReactions() {
         return reactionService.getAllReactions();
     }
@@ -55,10 +56,20 @@ public class ReactionController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/blog_user/{iduser}/{blogid}")
+    public ResponseEntity<ReactionType> getAllReactionsByBlogAndType(@PathVariable("blogid") Integer idblog,@PathVariable("iduser") Integer iduser) {
+            ReactionType reactionType = reactionService.getMyReactionOfThisBlog(idblog, iduser);
+            return ResponseEntity.ok(reactionType);
+    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteReaction(@PathVariable Integer id) {
         reactionService.deleteReaction(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @DeleteMapping("/deleteByBlogAndUser/{id}/{idblog}")
+    public void deleteReaction(@PathVariable("id")Integer id, @PathVariable("idblog") Integer idblog) {
+         reactionService.deleteReactionbyboganduser(id ,idblog);
+    }
+
 }

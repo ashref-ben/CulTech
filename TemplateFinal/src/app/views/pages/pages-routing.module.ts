@@ -4,8 +4,24 @@ import { Page404Component } from './page404/page404.component';
 import { Page500Component } from './page500/page500.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { BlogComponent } from './blog/blog.component';
+import { OneBlogComponent } from './one-blog/one-blog.component';
 
 const routes: Routes = [
+  {
+    path: 'blog',
+    component: BlogComponent,
+    data: {
+      title: 'blog'
+    }
+  }, 
+  {
+    path: 'blog/:id',
+    component: OneBlogComponent,
+    data: {
+      title: 'blog info'
+    }
+  },
   {
     path: '404',
     component: Page404Component,
@@ -33,7 +49,10 @@ const routes: Routes = [
     data: {
       title: 'Register Page'
     }
-  }
+  },
+  
+
+
 ];
 
 @NgModule({

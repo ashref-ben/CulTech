@@ -224,6 +224,10 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-star' },
     children: [
       {
+        name:'Blog',
+        url:'/blog'
+      },
+      {
         name: 'Login',
         url: '/login'
       },

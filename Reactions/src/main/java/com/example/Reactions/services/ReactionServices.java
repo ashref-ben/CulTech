@@ -6,12 +6,12 @@ import com.example.Reactions.feign.UserService;
 import com.example.Reactions.model.Reaction;
 import com.example.Reactions.model.ReactionType;
 import com.example.Reactions.repository.ReactionRepository;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,8 +21,10 @@ public class ReactionServices {
     private UserService userService;
     private CommentsService commentsService;
     public Reaction create(Reaction reaction) {
-      //  reaction.setIdUser(userService.retrieveUserInfo().getId());// for userid
+        if(getMyReactionOfThisBlog(reaction.getBlogid(), reaction.getIdUser())==null)
         return reactionRepository.save(reaction);
+        else
+            return null;
     }
 
     public List<Reaction> getAllReactions() {
@@ -36,6 +38,7 @@ public class ReactionServices {
     public void deleteReaction(Integer id) {
         reactionRepository.deleteById(id);
     }
+
 
     public List<UserDTO> getReactionByblogandtype(Integer idblog, String reactiontype) {
         try {
@@ -65,4 +68,26 @@ public class ReactionServices {
     public List<Reaction> getAllReactionsofBlog(Integer idblog) {
         return reactionRepository.findAllByBlogid(idblog);
     }
+
+    public ReactionType getMyReactionOfThisBlog(Integer idblog, Integer iduser) {
+        Optional<Reaction> reactionOptional = reactionRepository.getReactionsByBlogidAndAndIdUser(idblog, iduser);
+        if (reactionOptional.isPresent()) {
+            Reaction reaction = reactionOptional.get();
+            return reaction.getReactionType();
+        } else {
+            return null;
+        }
+    }
+
+    @Transactional
+    public void deleteReactionbyboganduser(Integer id, Integer idblog) {
+        Optional<Reaction> reactionOptional = reactionRepository.getReactionsByBlogidAndAndIdUser(idblog, id);
+        if (reactionOptional.isPresent()) {
+            Reaction reaction = reactionOptional.get();
+            reactionRepository.deleteById(reaction.getId());
+        } else {
+            System.out.println("not found reacitons ");;
+        }
+    }
+
 }

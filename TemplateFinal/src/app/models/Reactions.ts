@@ -3,7 +3,8 @@ export enum ReactionType {
     DISLIKE = 'DISLIKE',
     LOVE = 'LOVE',
     ANGRY='ANGRY',
-    SAD='SAD'
+    SAD='SAD',
+    EXCITED='EXCITED',
 
 }
 

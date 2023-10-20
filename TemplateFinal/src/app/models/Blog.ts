@@ -1,13 +1,15 @@
 export class Blog {
-    id!: number;
-    iduser!: number;
-    title!: string;
-    date!: Date;
-    description!: string;
-    country!: string;
-    address!: string;
-    comments_id!: number;
-    reactions_id!: number[];
-    hashtags!: string[];
-    pictures!: string; // assuming base64 encoded image string
+    id?: number;
+    iduser?: number;
+    title?: string;
+    date?: Date;
+    description?: string;
+    country?: string;
+    address?: string;
+    pictures?: any;  
+
+    hashtags?: string[]; 
+    reactions_id?: number[]; 
+    comments_id?: number[];
+
 }
