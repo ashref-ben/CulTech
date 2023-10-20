@@ -7,6 +7,7 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -19,11 +20,17 @@ const routes: Routes = [
     data: {
       title: 'Home'
     },
+    
     children: [
       {
         path: 'dashboard',
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+      },
+      {
+        path: 'AddClaim',
+        loadChildren: () =>
+          import('./views/AddClaim/AddClaim.module').then((m) => m.AddClaimModule)
       },
       {
         path: 'theme',
