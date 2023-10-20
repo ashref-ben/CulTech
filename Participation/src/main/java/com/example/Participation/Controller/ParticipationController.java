@@ -1,7 +1,7 @@
-package com.example.participation.Controller;
+package com.example.Participation.Controller;
 
-import com.example.participation.Entity.Participation;
-import com.example.participation.Service.ParticipationService;
+import com.example.Participation.Entity.Participation;
+import com.example.Participation.Service.ParticipationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/participation")
+@RequestMapping("/Participation")
+@CrossOrigin("*")
 public class ParticipationController {
     private final ParticipationService participationService;
 

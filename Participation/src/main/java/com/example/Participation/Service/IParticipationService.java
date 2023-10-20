@@ -1,6 +1,7 @@
-package com.example.participation.Service;
+package com.example.Participation.Service;
 
-import com.example.participation.Entity.Participation;
+
+import com.example.Participation.Entity.Participation;
 
 import java.util.List;
 

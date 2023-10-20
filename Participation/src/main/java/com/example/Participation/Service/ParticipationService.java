@@ -1,7 +1,7 @@
-package com.example.participation.Service;
+package com.example.Participation.Service;
 
-import com.example.participation.Entity.Participation;
-import com.example.participation.Repository.ParticipationRepository;
+import com.example.Participation.Entity.Participation;
+import com.example.Participation.Repository.ParticipationRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

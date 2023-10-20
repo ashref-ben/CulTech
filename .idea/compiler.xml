@@ -17,6 +17,11 @@
         <module name="Blog" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Comments" target="17" />
+      <module name="Participation2" target="17" />
+      <module name="Reactions" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -26,6 +31,7 @@
       <module name="Event" options="-parameters" />
       <module name="Gateway" options="-parameters" />
       <module name="Participation" options="-parameters" />
+      <module name="Participation2" options="-parameters" />
       <module name="Prog-ech" options="-parameters" />
       <module name="partenariat" options="-parameters" />
     </option>
