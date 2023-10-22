@@ -21,6 +21,7 @@
       <module name="Comments" target="17" />
       <module name="Participation2" target="17" />
       <module name="Reactions" target="17" />
+      <module name="Reservation" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

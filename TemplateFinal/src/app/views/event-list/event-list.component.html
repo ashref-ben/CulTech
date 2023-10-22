@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Event List</h1>
+  <ul>
+    <li *ngFor="let event of events">
+      <div class="event-item">
+        <h2>{{ event.Title }}</h2>
+        <p>{{ event.Description }}</p>
+        <p>Date: {{ event.Date }}</p>
+        <p>Region: {{ event.region }}</p>
+        <!-- Add other event properties here -->
+        <button (click)="editEvent(event.id)">Edit</button>
+        <button (click)="deleteEvent(event.id)">Delete</button>
+      </div>
+    </li>
+  </ul>
+</div>
