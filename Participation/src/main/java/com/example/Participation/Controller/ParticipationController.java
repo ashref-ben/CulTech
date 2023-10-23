@@ -41,6 +41,9 @@ public class ParticipationController {
     public ResponseEntity<Participation> getParticipation(@PathVariable("id") Long id){
         return new ResponseEntity<>(participationService.getParticipation(id), HttpStatus.FOUND);
     }
-
+    @GetMapping("/getParticipationByUser/{id}")
+    public ResponseEntity<List<Participation>> getParticipationByUser(@PathVariable("id") Long id){
+        return new ResponseEntity<>(participationService.getParticipationByUser(id), HttpStatus.FOUND);
+    }
 
 }

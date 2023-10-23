@@ -4,6 +4,7 @@ import com.example.Participation.Entity.Participation;
 import com.example.Participation.Repository.ParticipationRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,8 +20,15 @@ public class ParticipationService implements IParticipationService {
         return participationRepository.findAll();
     }
 
+    public List<Participation> getParticipationByUser(Long id){
+        return participationRepository.getParticipationByUser(id);
+    }
     @Override
     public boolean add(Participation participation){
+        if(participation == null){
+            return false;
+        }
+        participation.setDate(new Date());
         participationRepository.save(participation);
         return true;
     }
@@ -48,4 +56,5 @@ public class ParticipationService implements IParticipationService {
     public Participation getParticipation(Long id){
         return participationRepository.findById(id).get();
     }
+
 }

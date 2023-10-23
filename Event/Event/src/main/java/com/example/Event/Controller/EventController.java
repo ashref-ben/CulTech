@@ -41,5 +41,8 @@ public class EventController {
     public ResponseEntity<Events> getEvent(@PathVariable("id") Long id){
         return new ResponseEntity<>(eventsService.getEvent(id), HttpStatus.FOUND);
     }
-
+    @GetMapping("/geteventsfromtoday")
+    public ResponseEntity<List<Events>> geteventsfromtoday(){
+        return new ResponseEntity<>(eventsService.geteventsfromtoday(), HttpStatus.FOUND);
+    }
 }

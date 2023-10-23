@@ -49,4 +49,7 @@ public class EventsService implements IEventsService{
         public Events getEvent(Long id){
             return eventsRepository.findById(id).get();
         }
+        public List<Events> geteventsfromtoday(){
+            return eventsRepository.geteventsfromtoday();
+        }
 }

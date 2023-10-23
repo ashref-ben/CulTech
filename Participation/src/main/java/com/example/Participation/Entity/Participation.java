@@ -21,6 +21,6 @@ public class Participation {
     private float payment;
     private Date date;
     private String Description;
-
+    private Long user;
     private Integer events;
 }

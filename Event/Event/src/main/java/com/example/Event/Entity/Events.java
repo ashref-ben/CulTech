@@ -24,5 +24,5 @@ public class Events implements Serializable {
     private String region;
     private String Picture;
     private String Category;
-
+    private Float Price;
 }
