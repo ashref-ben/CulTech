@@ -1,84 +1,83 @@
 package com.example.Blog.services;
 
-import com.example.Blog.dtos.BlogRequest;
-import com.example.Blog.dtos.BlogResponse;
+import com.example.Blog.feign.CommentsDto;
+import com.example.Blog.feign.CommentsService;
+import com.example.Blog.feign.UserService;
 import com.example.Blog.model.Blog;
 import com.example.Blog.repository.BlogRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class Blogservice {
+    private final UserService userService;
     private final BlogRepository blogRepository;
-    public List<BlogResponse> getAll() {
-        List<Blog> blogs=blogRepository.findAll();
-        return  blogs.stream().map(this::mapToBlogResponse).toList();
+    private final CommentsService commentsService;
+    public Blog createBlog(Blog blog) {
+        // Validate user_id by calling the AppUser service
+        // If valid, save and return, otherwise throw an exception
+        return blogRepository.save(blog);
     }
 
-    private BlogResponse mapToBlogResponse(Blog object) {
-        return BlogResponse.builder()
-                .id(object.getId())
-                .description(object.getDescription())
-                .Title(object.getTitle())
-                .date(object.getDate())
-                .hashtags(object.getHashtags())
-                .pictures(object.getPictures())
-                .address(object.getAddress())
-                .country(object.getCountry())
-                .build();
+    public Blog getBlogById(Integer id) {
+        // Fetch the blog by ID and return
+        return blogRepository.findById(id).orElse(null); // Handle not found scenario
     }
 
-    public void create(BlogRequest blogRequest) {
-        Blog blog= Blog.builder()
-                .pictures(blogRequest.getPictures())
-                .Title(blogRequest.getTitle())
-                .description(blogRequest.getDescription())
-                .hashtags(blogRequest.getHashtags())
-                .country(blogRequest.getCountry())
-                .address(blogRequest.getAddress())
-                .build();
-        blog.setDate(new Date());
-        blogRepository.save(blog);
-        log.info("Object Added ");
-    }
-    public void delete(Integer blogId) {
-        Optional<Blog> optionalBlog = blogRepository.findById(blogId);
-
-        if (optionalBlog.isPresent()) {
-            blogRepository.deleteById(blogId);
-            log.info("Blog with ID {} deleted", blogId);
+    public Blog updateBlog(Integer id, Blog blog) {
+        if(blogRepository.existsById(id)) {
+            return blogRepository.save(blog);
         } else {
-            throw new NoSuchElementException ( "Blog not found with ID " + blogId);
+            return null;
         }
     }
 
-    public void update(Integer blogId, BlogRequest blogRequest) {
-        Optional<Blog> optionalBlog = blogRepository.findById(blogId);
-
-        if (optionalBlog.isPresent()) {
-            Blog existingBlog = optionalBlog.get();
-            existingBlog.setTitle(blogRequest.getTitle());
-            existingBlog.setDescription(blogRequest.getDescription());
-            existingBlog.setHashtags(blogRequest.getHashtags());
-            existingBlog.setPictures(blogRequest.getPictures());
-            existingBlog.setAddress(blogRequest.getAddress());
-            existingBlog.setCountry(blogRequest.getCountry());
-            // Optionally, update the date if needed: existingBlog.setDate(new Date());
-
-            blogRepository.save(existingBlog);
-            log.info("Blog with ID {} updated", blogId);
-        } else {
-            throw new NoSuchElementException("Blog not found with ID " + blogId);
-        }
+    public void deleteBlog(Integer id) {
+        blogRepository.deleteById(id);
     }
+
+    public List<Blog> getAll() {
+        return blogRepository.findAll();
+    }
+
+    public List<Blog> getMyBlog(Integer id ) {
+        return blogRepository.findAllByIduser(id);
+    }
+
+  /*  public List<Blog> getFullBlog() {
+        List<Blog> allBlogs = getAll();
+
+        for (Blog blog : allBlogs) {
+            ResponseEntity<List<CommentsDto>> commentsResponse = commentsService.getCommentsByBlogId(blog.getId());
+
+            if (commentsResponse.getStatusCode().equals(HttpStatus.OK)) {
+                blog.setComments(commentsResponse.getBody());
+            }
+        }
+        return allBlogs;
+    }*/
+    public List<String> getFullBlog2() {
+        List<Blog> allBlogs = getAll();
+        List<String> strings = null;
+        for (Blog blog : allBlogs) {
+            ResponseEntity<List<CommentsDto>> commentsResponse = commentsService.getCommentsByBlogId(blog.getId());
+            String str=blog+String.valueOf(commentsResponse);
+            strings.add(str);
+        }
+        return strings;
+    }
+
+    public List<Blog> getbyhashtag(String str ){
+        return blogRepository.findAllByHashtags(str);
+    }
+
 
 }

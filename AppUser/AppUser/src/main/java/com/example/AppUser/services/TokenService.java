@@ -3,6 +3,7 @@ package com.example.AppUser.services;
 import java.time.Instant;
 import java.util.stream.Collectors;
 
+import com.example.AppUser.models.ApplicationUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TokenService {
+    @Autowired
+    private UserService userService;
     
     @Autowired
     private JwtEncoder jwtEncoder;
@@ -22,7 +25,7 @@ public class TokenService {
     private JwtDecoder jwtDecoder;
 
     public String generateJwt(Authentication auth){
-
+        ApplicationUser user = userService.getUserByUsername(auth.getName());
         Instant now = Instant.now();
 
         String scope = auth.getAuthorities().stream()
@@ -34,7 +37,8 @@ public class TokenService {
             .issuedAt(now)
             .subject(auth.getName())
             .claim("roles", scope)
-            .build();
+            .claim("id",user.getUserId())
+                .build();
 
         return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }

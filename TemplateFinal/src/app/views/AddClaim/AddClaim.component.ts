@@ -2,8 +2,10 @@ import { Component, Directive, EventEmitter, HostBinding, HostListener, OnInit, 
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { DashboardChartsData, IChartProps } from '../dashboard/dashboard-charts-data';
+
 import {EventService} from '../../Services/eventService'
 import { FormBuilder, FormGroup } from '@angular/forms';
+
 interface IUser {
   name: string;
   state: string;
@@ -17,6 +19,7 @@ interface IUser {
   status: string;
   color: string;
 }
+
 interface EventClaimResponse {
   id: number;
   eventId: string;
@@ -24,11 +27,13 @@ interface EventClaimResponse {
   incidentDate: string;
   incidentDescription: string;
   // Add other properties if needed
+
 }
 @Component({
   templateUrl: 'AddClaim.component.html',
   styleUrls: ['AddClaim.component.scss']
 })
+
 
 export class AddClaimComponent implements OnInit {
   constructor(private snackBar: MatSnackBar,private fb: FormBuilder,private eventService: EventService,private chartsData: DashboardChartsData) {
@@ -73,6 +78,7 @@ export class AddClaimComponent implements OnInit {
   exchangeProgramsClaims : string [] = ['Travel expenses','Accommodation costs','Visa and passport fees (if applicable)','Health insurance costs(if applicable)','Transportation within the host country','Program fees or tuition','Other'];
   BlogClaims : string[] = ['Racism','Language violation','Irrelevancy','Other'];
   partnerships : string [] = ['partnership 1','partnership 2','partnership 3']
+
   selectedEvent: string ="Select an Event";
   showEventOptions = false;
   uploadedFiles: File[] = [];
@@ -198,11 +204,12 @@ export class AddClaimComponent implements OnInit {
       );
       
   }
+
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files) {
        this.files = Array.from(input.files);
-    
+
       
     }
   }
@@ -210,7 +217,7 @@ export class AddClaimComponent implements OnInit {
   
   deleteFile(f: { name: any; }){
     this.files = this.files.filter(function(w){ return w.name != f.name });
-    
+
   }
   onFileSelect(event: Event): void {
     const inputElement = event.target as HTMLInputElement;

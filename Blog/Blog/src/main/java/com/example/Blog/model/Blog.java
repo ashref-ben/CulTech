@@ -1,8 +1,11 @@
 package com.example.Blog.model;
+import com.example.Blog.feign.CommentsDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import lombok.*;
 
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -11,27 +14,28 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String Title;
+    private Integer iduser;
+    private String title;
     private Date date;
     private String description;
     private String country;
     private String address;
-    @Lob
-    @Column(length = 1048576)
-    private Byte[] pictures;
+    private Integer comments_id ;
     @ElementCollection
-    @CollectionTable(name = "blog_hashtags")
+    private List<Integer> reactions_id;
+    @ElementCollection
     private List<String> hashtags;
+    @Lob
+    @Column(length = 100000)
+    private byte[] pictures;
 
-    private Integer user_id;
-    /*
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private ApplicationUser user;
-    */
+
+
+    //... other getters and setters ...
+
+
 }

@@ -11,7 +11,6 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -123,5 +122,9 @@ public class UserService implements UserDetailsService {
     public ApplicationUser getByUserId(Integer id) {
         ApplicationUser user=userRepository.getById(id);
         return user;
+    }
+
+    public ApplicationUser getUserByUsername(String username) {
+        return userRepository.getByUsername(username);
     }
 }
