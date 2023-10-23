@@ -25,12 +25,12 @@ import { WidgetsModule } from '../widgets/widgets.module';
 import { DashboardChartsData } from '../dashboard/dashboard-charts-data';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   imports: [
-    MatIconModule,
     MatSnackBarModule,
-    MatListModule,
+
     AddClaimRoutingModule,
     CardModule,
     NavModule,
@@ -54,7 +54,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AddClaimComponent
   ],
   providers: [
-    DashboardChartsData 
+
+    DashboardChartsData,
+    MatSnackBar,
+    MatSnackBarConfig 
+
   ]
 })
 export class AddClaimModule {

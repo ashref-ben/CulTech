@@ -3,6 +3,9 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { DashboardChartsData, IChartProps } from '../dashboard/dashboard-charts-data';
 
+import {EventService} from '../../Services/eventService'
+import { FormBuilder, FormGroup } from '@angular/forms';
+
 interface IUser {
   name: string;
   state: string;
@@ -16,68 +19,197 @@ interface IUser {
   status: string;
   color: string;
 }
-@Directive({
-  selector: '[fileDragDrop]'
-})
-export class FileDragNDropDirective {
-  @Output() private filesChangeEmiter : EventEmitter<File[]> = new EventEmitter();
-  
-  @HostBinding('style.background') private background = '#eee';
-  @HostBinding('style.border') private borderStyle = '2px dashed';
-  @HostBinding('style.border-color') private borderColor = '#696D7D';
-  @HostBinding('style.border-radius') private borderRadius = '5px';
 
-  constructor() { }
+interface EventClaimResponse {
+  id: number;
+  eventId: string;
+  claimType: string;
+  incidentDate: string;
+  incidentDescription: string;
+  // Add other properties if needed
 
-  @HostListener('dragover', ['$event']) public onDragOver(evt: { preventDefault: () => void; stopPropagation: () => void; }){
-    evt.preventDefault();
-    evt.stopPropagation();
-    this.background = 'lightgray';
-    this.borderColor = 'cadetblue';
-    this.borderStyle = '3px solid';
-  }
-
-  @HostListener('dragleave', ['$event']) public onDragLeave(evt: { preventDefault: () => void; stopPropagation: () => void; }){
-    evt.preventDefault();
-    evt.stopPropagation();
-    this.background = '#eee';
-    this.borderColor = '#696D7D';
-    this.borderStyle = '2px dashed';
-  }
-
-  @HostListener('drop', ['$event']) public onDrop(evt: { preventDefault: () => void; stopPropagation: () => void; dataTransfer: { files: any; }; }){
-    evt.preventDefault();
-    evt.stopPropagation();
-    this.background = '#eee';
-    this.borderColor = '#696D7D';
-    this.borderStyle = '2px dashed';
-    let files = evt.dataTransfer.files;
-    let valid_files : Array<File> = files;
-    this.filesChangeEmiter.emit(valid_files);
-  }
 }
 @Component({
   templateUrl: 'AddClaim.component.html',
   styleUrls: ['AddClaim.component.scss']
 })
+
+
 export class AddClaimComponent implements OnInit {
-  constructor(private chartsData: DashboardChartsData, private _snackBar: MatSnackBar) {
+  constructor(private snackBar: MatSnackBar,private fb: FormBuilder,private eventService: EventService,private chartsData: DashboardChartsData) {
+    this.form = this.fb.group({
+      eventId: '',
+      claimType: '',
+      incidentDate: '',
+      incidentDescription: ''
+    });
+    this.formex = this.fb.group({
+      exchangeProgramId: '',
+      claimType: '',
+      claimDetails: '',
+    });
+    this.formblog = this.fb.group({
+      postTitle: '',
+      postURL: '',
+      postPublicationDate: '',
+      claimDescription:'',
+      claimType:''
+    });
+    this.formpart = this.fb.group({
+      partnershipId: '',
+      partnerName: '',
+      claimDetails: '',
+      partnershipDescription:''
+    });
   }
+  
+  formpart: FormGroup;
+  formblog : FormGroup;
+  form: FormGroup;
+  formex: FormGroup;
   selectedFormId: string  = "eventForm";
+  selectedEventClaim : string ="";
+  selectedEventClaimType : string ="";
+  incidentDate: Date | undefined;
+  incidentDescription: string="";
   events: string[] = ['Event 1', 'Event 2', 'Event 3'];  
+  exchangePrograms: string[] = ['Exchange program 1', 'Exchange program 2', 'Exchange program 3'];  
+  types: string[] = ['Organization', 'Staff', 'Participation','Other'];  
+  exchangeProgramsClaims : string [] = ['Travel expenses','Accommodation costs','Visa and passport fees (if applicable)','Health insurance costs(if applicable)','Transportation within the host country','Program fees or tuition','Other'];
+  BlogClaims : string[] = ['Racism','Language violation','Irrelevancy','Other'];
+  partnerships : string [] = ['partnership 1','partnership 2','partnership 3']
+
   selectedEvent: string ="Select an Event";
   showEventOptions = false;
   uploadedFiles: File[] = [];
   public files: any[] = []; 
 
+
+  openSuccessSnackBar() {
+    this.snackBar.open('Claim saved successfully', 'OK', {
+      duration: 3000, // Adjust the duration as needed
+    });
+  }
+  submitForm() {
+    console.log(this.form.value);
+   
+    this.eventService.submitEventClaim(this.form.value)
+      .subscribe(   (response: any) => {
+        console.log(response.id)
+        const data = response;
+        console.log(data.id)
+        console.log(this.uploadedFiles);
+        if (this.uploadedFiles.length>1){
+        this.eventService.uploadFiles(data.id, this.uploadedFiles).subscribe(
+          (response) => {
+            
+            console.log(response);
+            
+            this.uploadedFiles = [];
+          },
+          (error) => {
+            
+            console.error(error);
+          }
+        );
+        }
+        this.openSuccessSnackBar(); 
+            this.form.reset(); 
+      },
+      error => {
+        console.error('Error:', error);
+        // Handle the error (e.g., show an error message to the user)
+      }
+      );
+      
+  }
+  submitFormex() {
+    console.log(this.formex.value);
+   
+    this.eventService.submitExchangeProgramClaim(this.formex.value)
+      .subscribe(   (response: any) => {
+        console.log(response.id)
+        const data = response;
+        console.log(data.id)
+        console.log(this.uploadedFiles);
+        if (this.uploadedFiles.length>0){
+        this.eventService.uploadFilesEX(data.id, this.uploadedFiles).subscribe(
+          (response) => {
+            console.log(response);
+            this.uploadedFiles = [];
+          },
+          (error) => {
+            
+            console.error(error);
+          }
+        );
+        }
+        this.openSuccessSnackBar(); 
+            this.formex.reset(); 
+      },
+      error => {
+        console.error('Error:', error);
+        // Handle the error (e.g., show an error message to the user)
+      }
+      );
+      
+  }
+  submitFormblog() {
+    console.log(this.formex.value);
+   
+    this.eventService.submitBlogClaim(this.formblog.value)
+      .subscribe(   (response: any) => {
+        console.log(response.id)
+        const data = response;
+        console.log(data.id)
+        this.openSuccessSnackBar(); 
+            this.formblog.reset(); 
+      },
+      error => {
+        console.error('Error:', error);
+        // Handle the error (e.g., show an error message to the user)
+      }
+      );
+      
+  }
+
+  submitFormpart() {
+    console.log(this.formex.value);
+   
+    this.eventService.submitPartnershipClaim(this.formpart.value)
+      .subscribe(   (response: any) => {
+        console.log(response.id)
+        const data = response;
+        console.log(data.id)
+        console.log(this.uploadedFiles);
+        if (this.uploadedFiles.length>0){
+        this.eventService.uploadFilesPart(data.id, this.uploadedFiles).subscribe(
+          (response) => {
+            console.log(response);
+            this.uploadedFiles = [];
+          },
+          (error) => {
+            
+            console.error(error);
+          }
+        );
+        }
+        this.openSuccessSnackBar(); 
+            this.formpart.reset(); 
+      },
+      error => {
+        console.error('Error:', error);
+        // Handle the error (e.g., show an error message to the user)
+      }
+      );
+      
+  }
+
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files) {
        this.files = Array.from(input.files);
-      // Use the files array as needed
-    this._snackBar.open("Successfully upload!", 'Close', {
-      duration: 2000,
-    });
+
       
     }
   }
@@ -85,9 +217,7 @@ export class AddClaimComponent implements OnInit {
   
   deleteFile(f: { name: any; }){
     this.files = this.files.filter(function(w){ return w.name != f.name });
-    this._snackBar.open("Successfully delete!", 'Close', {
-      duration: 2000,
-    });
+
   }
   onFileSelect(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
