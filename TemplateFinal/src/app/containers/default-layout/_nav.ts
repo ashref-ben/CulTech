@@ -36,6 +36,11 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-cursor' }
   },
   {
+    name: 'Claims',
+    url: '/ClaimsList',
+    iconComponent: { name: 'cil-cursor' }
+  },
+  {
     name: 'Base',
     url: '/base',
     iconComponent: { name: 'cil-puzzle' },

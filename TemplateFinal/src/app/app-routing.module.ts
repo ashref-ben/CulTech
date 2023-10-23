@@ -33,6 +33,31 @@ const routes: Routes = [
           import('./views/AddClaim/AddClaim.module').then((m) => m.AddClaimModule)
       },
       {
+        path: 'ClaimsList',
+        loadChildren: () =>
+          import('./views/ClaimsList/ClaimsList.module').then((m) => m.ClaimsListModule)
+      },
+      {
+        path: 'EventClaimsDetails/:claimId',
+        loadChildren: () =>
+          import('./views/EventClaimsDetails/EventClaimsDetails.module').then((m) => m.EventClaimsDetailsModule)
+      },
+      {
+        path: 'PartnershipClaimsDetails/:claimId',
+        loadChildren: () =>
+          import('./views/PartnershipClaimsDetails/PartnershipClaimsDetails.module').then((m) => m.PartnershipClaimsDetailsModule)
+      },
+      {
+        path: 'BlogClaimsDetails/:claimId',
+        loadChildren: () =>
+          import('./views/BlogClaimsDetails/BlogClaimsDetails.module').then((m) => m.BlogClaimsDetailsModule)
+      },
+      {
+        path: 'ExchangeProgramClaimsDetails/:claimId',
+        loadChildren: () =>
+          import('./views/ProgramExchangeClaimsDetails/ProgramExchangeClaimsDetails.module').then((m) => m.ProgramExchangeClaimsDetailsModule)
+      },
+      {
         path: 'theme',
         loadChildren: () =>
           import('./views/theme/theme.module').then((m) => m.ThemeModule)
