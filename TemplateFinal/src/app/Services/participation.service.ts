@@ -11,23 +11,23 @@ export class ParticipationService {
 
   constructor(private http: HttpClient) {}
 
-  getAllParticipations(): Observable<Participation[]> {
+  getAll(): Observable<Participation[]> {
     return this.http.get<Participation[]>(`${this.baseUrl}/all`);
+  }
+
+  getParticipationByUser(userId: number): Observable<Participation[]> {
+    return this.http.get<Participation[]>(`${this.baseUrl}/getParticipationByUser/${userId}`);
   }
 
   addParticipation(participation: Participation): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}/add`, participation);
   }
 
-  deleteParticipation(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.baseUrl}/delete/${id}`);
+  deleteParticipation(participationId: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.baseUrl}/delete/${participationId}`);
   }
 
   updateParticipation(participation: Participation): Observable<boolean> {
     return this.http.put<boolean>(`${this.baseUrl}/update`, participation);
-  }
-
-  getParticipationById(id: number): Observable<Participation> {
-    return this.http.get<Participation>(`${this.baseUrl}/getParticipation/${id}`);
   }
 }

@@ -3,6 +3,7 @@ import { EventService } from '../../Services/event.service';
 import { Events } from '../../models/event';
 import { FormsModule } from '@angular/forms';
 
+
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
@@ -10,14 +11,15 @@ import { FormsModule } from '@angular/forms';
 })
 export class EventListComponent implements OnInit {
   events: Events[] = [];
-  constructor(private eventService: EventService) {}
+
+  constructor(private eventsService: EventService) {}
 
   ngOnInit() {
     this.loadEvents();
   }
 
   loadEvents() {
-    this.eventService.getAllEvents().subscribe(
+    this.eventsService.getAll().subscribe(
       (data) => {
         this.events = data;
       },
@@ -27,20 +29,10 @@ export class EventListComponent implements OnInit {
     );
   }
 
-  editEvent(id: number) {
-    // You can implement the edit functionality here
-  }
-
-  deleteEvent(id: number) {
-    this.eventService.deleteEvent(id).subscribe(
-      (result) => {
-        if (result) {
-          // Event deleted successfully
-          this.loadEvents(); // Refresh the list of events
-        } else {
-          // Handle error
-          console.error('Error deleting event.');
-        }
+  deleteEvent(eventId: number) {
+    this.eventsService.delete(eventId).subscribe(
+      () => {
+        this.loadEvents();
       },
       (error) => {
         console.error('Error deleting event: ', error);

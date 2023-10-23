@@ -11,23 +11,23 @@ export class EventService {
 
   constructor(private http: HttpClient) {}
 
-  getAllEvents(): Observable<Events[]> {
+  getAll(): Observable<Events[]> {
     return this.http.get<Events[]>(`${this.baseUrl}/all`);
   }
 
-  addEvent(event: Events): Observable<boolean> {
+  geteventsfromtoday(): Observable<Events[]> {
+    return this.http.get<Events[]>(`${this.baseUrl}/geteventsfromtoday`);
+  }
+
+  add(event: Event): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}/add`, event);
   }
 
-  deleteEvent(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.baseUrl}/delete/${id}`);
+  delete(eventId: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.baseUrl}/delete/${eventId}`);
   }
 
-  updateEvent(event: Events): Observable<boolean> {
+  update(event: Event): Observable<boolean> {
     return this.http.put<boolean>(`${this.baseUrl}/update`, event);
-  }
-
-  getEventById(id: number): Observable<Events> {
-    return this.http.get<Events>(`${this.baseUrl}/getEvent/${id}`);
   }
 }

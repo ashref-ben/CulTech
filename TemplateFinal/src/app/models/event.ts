@@ -6,4 +6,5 @@ export interface Events {
   region: string;
   Picture: string;
   Category: string;
+  Price:number;
 }
