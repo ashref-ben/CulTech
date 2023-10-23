@@ -7,11 +7,15 @@
       [cSidebarToggle]="sidebarId"
       class="ps-1"
     >
+      <svg cIcon
+        name="cilMenu"
+        size="lg"
+      ></svg>
     </button>
     <c-header-nav class="d-none d-lg-flex me-auto">
       <c-nav-item>
-        <a cNavLink routerLink="/home" routerLinkActive="active">
-          CultechConnect
+        <a cNavLink routerLink="/dashboard" routerLinkActive="active">
+          Dashboard
         </a>
       </c-nav-item>
       <c-nav-item>
@@ -149,11 +153,12 @@
         <hr cDropdownDivider/>
       </li>
       <li>
-        <a routerLink="./" cDropdownItem>
-          <svg cIcon class="me-2" name="cilLockLocked"></svg>
-          Lock Account
+        <a (click)="logout()"  cDropdownItem>
+            <svg cIcon class="me-2" name="cilLockLocked"></svg>
+            Lock Account
         </a>
-      </li>
+    </li>
+    
       <li></li>
     </ul>
   </c-dropdown>

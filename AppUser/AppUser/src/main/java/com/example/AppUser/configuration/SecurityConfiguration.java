@@ -63,40 +63,16 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
+                .csrf(csrf -> csrf.disable())
                 .cors()
                 .and()
-                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     auth.requestMatchers("/user/auth/**").permitAll();
                     auth.anyRequest().authenticated();
                 });
-
-        http.oauth2ResourceServer()
-                .jwt()
-                .jwtAuthenticationConverter(jwtAuthenticationConverter());
-        http.sessionManagement(
-                session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        );
-
         return http.build();
     }
 
-    @Configuration
-    @EnableWebMvc
-    public class WebConfig implements WebMvcConfigurer {
-
-        @Override
-        public void addCorsMappings(CorsRegistry corsRegistry) {
-            corsRegistry.addMapping("/**")
-                    .allowedOrigins("http://localhost:4200")
-                    .allowedMethods("*")
-                    .maxAge(3600L)
-                    .allowedHeaders("*")
-                    .exposedHeaders("Authorization")
-                    .allowCredentials(true);
-        }
-    }
 
     @Bean
     public JwtDecoder jwtDecoder(){
