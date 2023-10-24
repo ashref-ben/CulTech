@@ -26,10 +26,11 @@ export class BlogComponent {
   constructor(private blogService: BlogService, private reactionservice: ReactionsService, private route: ActivatedRoute, private fb: FormBuilder) {
   }
   Username:any;
+  user_id : any=Number(localStorage.getItem('id'));
   ngOnInit(): void {
-    this.selectedBlog.iduser = Number(localStorage.getItem('id'));
+    this.selectedBlog.iduser = this.user_id;
     this.Username = localStorage.getItem('username');
-    
+
     this.loadAllBlogs();
   }
   //******************************* */hashtags
@@ -74,7 +75,7 @@ export class BlogComponent {
         formData.append('description', this.selectedBlog.description);
       }
     }
-    formData.append('iduser', '2');
+    formData.append('iduser', this.user_id);
     formData.append('address', 'nchalah google maps');
 
     if (this.selectedFile) {
@@ -111,12 +112,6 @@ export class BlogComponent {
       this.loadAllBlogs();
     });
   }
-
-
-
-  //******************************* */reactions
-
-
 
 }
 
