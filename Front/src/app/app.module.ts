@@ -15,6 +15,13 @@ import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AppHttpInterceptor} from "./Interceptors/app-http.interceptor";
+import { AddProgrammeEchangeComponent } from './application/add-programme-echange/add-programme-echange.component';
+import { ProgrammeEchangeComponent } from './application/programme-echange/programme-echange.component';
+import { UpdateProgrammeComponent } from './application/update-programme/update-programme.component';
+import { DisplayApplicationComponent } from './application/display-application/display-application.component';
+import { AddApplicationComponent } from './application/add-application/add-application.component';
+import { UpdateApplicationComponent } from './application/update-application/update-application.component';
+import { DisplayProgrammeUserComponent } from './application/display-programme-user/display-programme-user.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +35,14 @@ import {AppHttpInterceptor} from "./Interceptors/app-http.interceptor";
     BodyUserComponent,
     FotterUserComponent,
     HeaderUserComponent,
-    LoginComponent
+    LoginComponent,
+    AddProgrammeEchangeComponent,
+    ProgrammeEchangeComponent,
+    UpdateProgrammeComponent,
+    DisplayApplicationComponent,
+    AddApplicationComponent,
+    UpdateApplicationComponent,
+    DisplayProgrammeUserComponent
   ],
   imports: [
     BrowserModule,

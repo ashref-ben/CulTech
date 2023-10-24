@@ -1,0 +1,35 @@
+<div class="form-container">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="title">Titre :</label>
+            <input type="text" id="title" [(ngModel)]="programme.title" name="title">
+        </div>
+
+        <div class="form-group">
+            <label for="region">Région :</label>
+            <input type="text" id="region" [(ngModel)]="programme.region" name="region">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description :</label>
+            <textarea id="description" [(ngModel)]="programme.description" name="description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="startDate">Date de début :</label>
+            <input type="date" id="startDate" [(ngModel)]="programme.startDate" name="startDate">
+        </div>
+
+        <div class="form-group">
+            <label for="endDate">Date de fin :</label>
+            <input type="date" id="endDate" [(ngModel)]="programme.endDate" name="endDate">
+        </div>
+
+        <div class="form-group">
+            <label for="picture">Image :</label>
+            <input type="file" id="picture" (change)="onFileSelect($event)">
+        </div>
+
+        <button type="submit" class="submit-button">Update</button>
+    </form>
+</div>

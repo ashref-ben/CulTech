@@ -42,7 +42,9 @@
                     </div>
                 </div>
             </li>
-
+            
+            
+            
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -97,12 +99,21 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/admin/addprogramme']">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Add programme</span></a>
+            </li>
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" [routerLink]="['/admin/programme']">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Programme</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/admin/display-application']">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Application</span></a>
             </li>
 
             <!-- Divider -->

@@ -6,7 +6,13 @@ import { AllTemplateUserComponent } from './FrontOffice/all-template-user/all-te
 import { BodyUserComponent } from './FrontOffice/body-user/body-user.component';
 import { LoginComponent } from "./login/login.component";
 import { AuthenticationGuard } from "./guards/authentication.guard";
-const routes: Routes = [
+import { AddProgrammeEchangeComponent } from './application/add-programme-echange/add-programme-echange.component';
+import { ProgrammeEchangeComponent } from './application/programme-echange/programme-echange.component';
+import { UpdateProgrammeComponent } from './application/update-programme/update-programme.component';
+import { DisplayProgrammeUserComponent } from './application/display-programme-user/display-programme-user.component';
+import { AddApplicationComponent } from './application/add-application/add-application.component';
+import { DisplayApplicationComponent } from './application/display-application/display-application.component';
+/*const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
@@ -49,6 +55,85 @@ const routes: Routes = [
       {
         path: 'home',
         component: BodyUserComponent
+      }
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: "/login"
+  }
+];*/
+const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'super-admin',
+    component: AllTemplatesAdminComponent,
+    children: [
+      {
+        path: 'home',
+        component: BodyAdminComponent
+      }
+    ]
+  },
+  {
+    path: 'admin',
+    component: AllTemplatesAdminComponent,
+    children: [
+      {
+        path: 'home',
+        component: BodyAdminComponent
+      },
+      {
+        path: 'addprogramme',
+        component: AddProgrammeEchangeComponent
+      },
+      {
+        path: 'updateprogramme/:id',
+        component: UpdateProgrammeComponent
+      },
+      {
+        path: 'programme',
+        component: ProgrammeEchangeComponent
+      },
+      {
+        path: 'display-application',
+        component: DisplayApplicationComponent
+      }
+    ]
+  },
+  
+  {
+    path: 'organizer',
+    component: AllTemplatesAdminComponent,
+    children: [
+      {
+        path: 'home',
+        component: BodyAdminComponent
+      }
+    ]
+  },
+  {
+    path: 'user',
+    component: AllTemplateUserComponent,
+    children: [
+      {
+        path: 'home',
+        component: BodyUserComponent
+      },
+      {
+        path: 'programme',
+        component: DisplayProgrammeUserComponent
+      },
+      {
+        path: 'apply/:id',
+        component: AddApplicationComponent
+      },
+      {
+        path: 'display-application',
+        component: DisplayApplicationComponent
       }
     ]
   },

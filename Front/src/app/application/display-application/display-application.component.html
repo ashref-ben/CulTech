@@ -1,0 +1,28 @@
+<div class="table-container">
+    <table class="echange-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Motivation Letter</th>
+                <th>Program ID</th>
+                <th>CV</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let app of applications">
+                <td>{{ app.id }}</td>
+                <td>{{ app.nomEtudiant }}</td>
+                <td>{{ app.emailEtudiant }}</td>
+                <td>{{ app.lettreDeMotivation }}</td>
+                <td>{{ app.idProgrammeEchange }}</td>
+                <td><button (click)="downloadCV(app.cv)">View CV</button></td>
+
+                <td><button (click)="deleteApplication(app.id)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
