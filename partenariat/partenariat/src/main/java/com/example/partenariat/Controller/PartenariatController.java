@@ -51,16 +51,16 @@ public class PartenariatController {
 
 
 
-        @GetMapping("/advanced-search")
-        @PreAuthorize("hasAnyRole('ADMIN','SUPER-ADMIN','USER','ORGANIZER')")
-        public ResponseEntity<List<Partenariats>> advancedSearch(
-                @RequestParam(name = "nom", required = false) String nom,
-                @RequestParam(name = "dateStart", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateStart,
-                @RequestParam(name = "dateEnd", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateEnd,
-                @RequestParam(name = "type", required = false) String type) {
-
-            List<Partenariats> results = iService.advancedSearch(nom, dateStart, dateEnd, type);
-            return new ResponseEntity<>(results, HttpStatus.OK);
-        }
+//        @GetMapping("/advanced-search")
+//        @PreAuthorize("hasAnyRole('ADMIN','SUPER-ADMIN','USER','ORGANIZER')")
+//        public ResponseEntity<List<Partenariats>> advancedSearch(
+//                @RequestParam(name = "nom", required = false) String nom,
+//                @RequestParam(name = "dateStart", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateStart,
+//                @RequestParam(name = "dateEnd", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateEnd,
+//                @RequestParam(name = "type", required = false) String type) {
+//
+//            List<Partenariats> results = iService.advancedSearch(nom, dateStart, dateEnd, type);
+//            return new ResponseEntity<>(results, HttpStatus.OK);
+//        }
 
 }

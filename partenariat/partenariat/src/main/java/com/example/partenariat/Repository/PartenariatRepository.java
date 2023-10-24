@@ -11,15 +11,15 @@ import java.util.List;
 @Repository
 public interface PartenariatRepository extends JpaRepository<Partenariats, Integer> {
    // Partenariats findBypatnername(String nom);
-   @Query("SELECT p FROM Partenariats p " +
-           "WHERE (:nom IS NULL OR p.nom LIKE %:nom%) " +
-           "AND (:dateStart IS NULL OR p.dateDebut >= :dateStart) " +
-           "AND (:dateEnd IS NULL OR p.dateDebut <= :dateEnd) " +
-           "AND (:type IS NULL OR p.type LIKE %:type%)")
-   List<Partenariats> findByAdvancedSearch(
-           @Param("keyword") String keyword,
-           @Param("dateStart") Date dateStart,
-           @Param("dateEnd") Date dateEnd,
-           @Param("type") String type
-   );
+//   @Query("SELECT p FROM Partenariats p " +
+//           "WHERE (:nom IS NULL OR p.nom LIKE %:nom%) " +
+//           "AND (:dateStart IS NULL OR p.dateDebut >= :dateStart) " +
+//           "AND (:dateEnd IS NULL OR p.dateDebut <= :dateEnd) " +
+//           "AND (:type IS NULL OR p.type LIKE %:type%)")
+//   List<Partenariats> findByAdvancedSearch(
+//           @Param("keyword") String keyword,
+//           @Param("dateStart") Date dateStart,
+//           @Param("dateEnd") Date dateEnd,
+//           @Param("type") String type
+//   );
 }

@@ -51,11 +51,11 @@ public class ServicePartenariatImp implements ServicePartenariat{
     public void removePartenariats(Integer partenariatID) {
         partenariatRepository.deleteById(partenariatID);   }
 
-    @Override
-    public List<Partenariats> advancedSearch(String nom, Date dateStart, Date dateEnd, String type) {
-        List<Partenariats> results = partenariatRepository.findByAdvancedSearch(
-                nom, dateStart, dateEnd, type);
-
-        return results;
-    }
+//    @Override
+//    public List<Partenariats> advancedSearch(String nom, Date dateStart, Date dateEnd, String type) {
+//        List<Partenariats> results = partenariatRepository.findByAdvancedSearch(
+//                nom, dateStart, dateEnd, type);
+//
+//        return results;
+//    }
 }

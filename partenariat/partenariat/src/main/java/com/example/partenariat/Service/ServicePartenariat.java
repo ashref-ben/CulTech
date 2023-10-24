@@ -15,6 +15,6 @@ public interface ServicePartenariat{
 
     void removePartenariats(Integer partenariatID);
 
-    List<Partenariats> advancedSearch(String nom, Date dateStart, Date dateEnd, String type);
+   // List<Partenariats> advancedSearch(String nom, Date dateStart, Date dateEnd, String type);
 
 }
