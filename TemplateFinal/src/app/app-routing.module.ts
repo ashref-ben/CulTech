@@ -7,6 +7,7 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -19,11 +20,42 @@ const routes: Routes = [
     data: {
       title: 'Home'
     },
+    
     children: [
       {
         path: 'dashboard',
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+      },
+      {
+        path: 'AddClaim',
+        loadChildren: () =>
+          import('./views/AddClaim/AddClaim.module').then((m) => m.AddClaimModule)
+      },
+      {
+        path: 'ClaimsList',
+        loadChildren: () =>
+          import('./views/ClaimsList/ClaimsList.module').then((m) => m.ClaimsListModule)
+      },
+      {
+        path: 'EventClaimsDetails/:claimId',
+        loadChildren: () =>
+          import('./views/EventClaimsDetails/EventClaimsDetails.module').then((m) => m.EventClaimsDetailsModule)
+      },
+      {
+        path: 'PartnershipClaimsDetails/:claimId',
+        loadChildren: () =>
+          import('./views/PartnershipClaimsDetails/PartnershipClaimsDetails.module').then((m) => m.PartnershipClaimsDetailsModule)
+      },
+      {
+        path: 'BlogClaimsDetails/:claimId',
+        loadChildren: () =>
+          import('./views/BlogClaimsDetails/BlogClaimsDetails.module').then((m) => m.BlogClaimsDetailsModule)
+      },
+      {
+        path: 'ExchangeProgramClaimsDetails/:claimId',
+        loadChildren: () =>
+          import('./views/ProgramExchangeClaimsDetails/ProgramExchangeClaimsDetails.module').then((m) => m.ProgramExchangeClaimsDetailsModule)
       },
       {
         path: 'theme',

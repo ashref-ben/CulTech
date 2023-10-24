@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
         <module name="Participation" />
+        <module name="Claims" />
         <module name="partenariat" />
         <module name="Gateway" />
         <module name="ApplicationEchange" />
@@ -24,6 +25,7 @@
       <module name="AppUser" options="-parameters" />
       <module name="ApplicationEchange" options="-parameters" />
       <module name="Blog" options="-parameters" />
+      <module name="Claims" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
       <module name="Event" options="-parameters" />
       <module name="Gateway" options="-parameters" />
