@@ -12,6 +12,7 @@ export class EventAddComponent {
     id: 0,
     Title: '',
     Description: '',
+    Price:0,
     Date: '',
     region: '',
     Picture: '',
@@ -21,7 +22,7 @@ export class EventAddComponent {
   constructor(private eventService: EventService) {}
 
   addEvent() {
-    this.eventService.addEvent(this.newEvent).subscribe(
+    this.eventService.add(this.newEvent).subscribe(
       (result) => {
         if (result) {
           // Event added successfully

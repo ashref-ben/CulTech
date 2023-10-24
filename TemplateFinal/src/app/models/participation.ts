@@ -4,4 +4,5 @@ export interface Participation {
   date: string;
   Description: string;
   events: number;
+  user:number
 }

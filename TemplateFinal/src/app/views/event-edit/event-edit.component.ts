@@ -9,23 +9,30 @@ import { Events } from '../../models/event';
   styleUrls: ['./event-edit.component.scss']
 })
 export class EventEditComponent {
-  selectedEvent: Events = {
-    id: 0,
-    Title: '',
-    Description: '',
-    Date: '',
-    region: '',
-    Picture: '',
-    Category: '',
-  };
+  editedEvent!: Events;
+  eventId: number = 0;
 
-  constructor(private eventService: EventService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private eventsService: EventService
+  ) {}
+
 
   ngOnInit() {
-    const id = +this.route.snapshot.params['id']; // Convert the id parameter to a number
-    this.eventService.getEventById(id).subscribe(
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id !== null) {
+        this.eventId = +id; // Get the event ID from the route
+        this.loadEvent();
+      }
+    });
+  }
+
+  loadEvent() {
+    this.eventsService.getEvent(this.eventId).subscribe(
       (data) => {
-        this.selectedEvent = data;
+        this.editedEvent = data;
       },
       (error) => {
         console.error('Error loading event: ', error);
@@ -33,12 +40,15 @@ export class EventEditComponent {
     );
   }
 
+
+
   updateEvent() {
-    this.eventService.updateEvent(this.selectedEvent).subscribe(
+    this.eventsService.update(this.editedEvent).subscribe(
       (result) => {
         if (result) {
           // Event updated successfully
-          this.router.navigate(['/events']); // Navigate back to the event list
+          alert('Event details updated successfully.');
+          this.router.navigate(['/admin/events']); // Redirect to the event list
         } else {
           // Handle error
           console.error('Error updating event.');

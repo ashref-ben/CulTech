@@ -17,7 +17,7 @@ export class ParticipationListComponent implements OnInit{
   }
 
   loadParticipations() {
-    this.participationService.getAllParticipations().subscribe(
+    this.participationService.getAll().subscribe(
       (data) => {
         this.participations = data;
       },
