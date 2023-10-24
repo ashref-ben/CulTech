@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import * as forms from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-
+import {  } from '@angular/forms';
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
 
@@ -18,6 +18,7 @@ import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent 
 import {
   AvatarModule,
   BadgeModule,
+
   BreadcrumbModule,
   ButtonGroupModule,
   ButtonModule,
@@ -25,6 +26,7 @@ import {
   DropdownModule,
   FooterModule,
   FormModule,
+ 
   GridModule,
   HeaderModule,
   ListGroupModule,
@@ -37,6 +39,8 @@ import {
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { PartenariatListComponent } from './containers/partenariat-list/partenariat-list.component';
+import { PartenariataddComponent } from './containers/partenariatadd/partenariatadd.component';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -45,7 +49,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent, ...APP_CONTAINERS, PartenariatListComponent, PartenariataddComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -62,9 +66,10 @@ const APP_CONTAINERS = [
     NavModule,
     ButtonModule,
     FormModule,
+    forms.FormsModule,
     UtilitiesModule,
     ButtonGroupModule,
-    ReactiveFormsModule,
+    forms.ReactiveFormsModule,
     SidebarModule,
     SharedModule,
     TabsModule,

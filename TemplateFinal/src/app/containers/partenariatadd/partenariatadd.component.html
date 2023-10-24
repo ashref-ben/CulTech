@@ -1,0 +1,43 @@
+
+<app-default-header></app-default-header>
+<div class="table-container">
+    <h2>List of Partenariats</h2>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Partenariat ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Date Debut</th>
+                <th>Date Fin</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of list_partenariat">
+                <td>{{ p.partenariatID }}</td>
+                <td>{{ p.nom }}</td>
+                <td>{{ p.description }}</td>
+                <td>{{ p.dateDebut | date }}</td>
+                <td>{{ p.dateFin | date }}</td>
+                <td>{{ p.type }}</td>
+            </tr>
+            <tr>
+                <td><input type="text" [(ngModel)]="newPartenariat.partenariatID"></td>
+                <td><input type="text" [(ngModel)]="newPartenariat.nom"></td>
+                <td><input type="text" [(ngModel)]="newPartenariat.description"></td>
+                <td><input type="date" [(ngModel)]="newPartenariat.dateDebut"></td>
+                <td><input type="date" [(ngModel)]="newPartenariat.dateFin"></td>
+                <td><input type="text" [(ngModel)]="newPartenariat.type"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button (click)="onSubmit()">Add Partenariat</button>
+
+
+    
+
+
+
+</div>
+<app-default-footer></app-default-footer>

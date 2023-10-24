@@ -6,6 +6,8 @@ import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
+import { PartenariatListComponent } from './containers/partenariat-list/partenariat-list.component';
+import { PartenariataddComponent } from './containers/partenariatadd/partenariatadd.component';
 
 const routes: Routes = [
   {
@@ -98,6 +100,27 @@ const routes: Routes = [
     component: RegisterComponent,
     data: {
       title: 'Register Page'
+    }
+  },
+  {
+    path: 'Partenariat/retrieveAllPartenariat',
+    component: PartenariatListComponent,
+    data: {
+      title: 'listPartenariat'
+    }
+  },
+  {
+    path: 'Partenariat/add',
+    component: PartenariataddComponent,
+    data: {
+      title: 'addPartenariat'
+    }
+  },
+  {
+    path: 'Partenariat//update/{partenariatID}',
+    component: PartenariatListComponent,
+    data: {
+      title: 'updatePartenariat'
     }
   },
   {path: '**', redirectTo: 'dashboard'}

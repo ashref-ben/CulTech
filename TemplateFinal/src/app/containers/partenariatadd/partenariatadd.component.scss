@@ -1,0 +1,48 @@
+/* Apply a general style to the table */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #fff;
+  }
+  
+  /* Style table header */
+  .styled-table th {
+    background-color: #1b3dae;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* Style table rows */
+  .styled-table td, .styled-table th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  /* Add hover effect on table rows */
+  .styled-table tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Style form input elements */
+  .table-container input[type="text"], .table-container input[type="date"] {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Style the "Add Partenariat" button */
+  .table-container button {
+    background-color: #1b3dae;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .table-container button:hover {
+    background-color: #555;
+  }
+  

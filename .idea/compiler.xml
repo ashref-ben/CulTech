@@ -14,6 +14,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="AppUser" target="17" />
+      <module name="EurekaServer" target="17" />
+      <module name="Gateway" target="17" />
       <module name="partenariat" target="17" />
     </bytecodeTargetLevel>
   </component>

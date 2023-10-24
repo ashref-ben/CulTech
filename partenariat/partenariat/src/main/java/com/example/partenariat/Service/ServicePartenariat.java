@@ -2,6 +2,7 @@ package com.example.partenariat.Service;
 
 import com.example.partenariat.Entities.Partenariats;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ServicePartenariat{
@@ -13,5 +14,7 @@ public interface ServicePartenariat{
     Partenariats retrievePartenariats(Integer partenariatID);
 
     void removePartenariats(Integer partenariatID);
+
+    List<Partenariats> advancedSearch(String nom, Date dateStart, Date dateEnd, String type);
 
 }

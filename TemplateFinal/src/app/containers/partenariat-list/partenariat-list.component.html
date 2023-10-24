@@ -1,0 +1,56 @@
+<app-default-header></app-default-header>
+<div class="table-container">
+    <h2>List of Partenariats</h2>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Partenariat ID</th>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Date Debut</th>
+          <th>Date Fin</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of list_partenariat" (click)="onPartenariatSelected(p)">
+          <td>{{ p.partenariatID }}</td>
+          <td>{{ p.nom }}</td>
+          <td>{{ p.description }}</td>
+          <td>{{ p.dateDebut | date }}</td>
+          <td>{{ p.dateFin | date }}</td>
+          <td>{{ p.type }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    
+
+
+    <h2>Edit Partenariat</h2>
+    <form *ngIf="selectedPartenariat" (ngSubmit)="updatePartenariat()">
+        <label>Partenariat ID:</label>
+        <input type="text" [(ngModel)]="selectedPartenariat.partenariatID" [ngModelOptions]="{standalone: true}" disabled>
+
+        <label>Nom:</label>
+        <input type="text" [(ngModel)]="selectedPartenariat.nom" [ngModelOptions]="{standalone: true}">
+
+        <label>Description:</label>
+        <input type="text" [(ngModel)]="selectedPartenariat.description" [ngModelOptions]="{standalone: true}">
+
+        <label>Date Debut:</label>
+        <input type="date" [(ngModel)]="selectedPartenariat.dateDebut" [ngModelOptions]="{standalone: true}">
+
+        <label>Date Fin:</label>
+        <input type="date" [(ngModel)]="selectedPartenariat.dateFin" [ngModelOptions]="{standalone: true}">
+
+        <label>Type:</label>
+        <input type="text" [(ngModel)]="selectedPartenariat.type" [ngModelOptions]="{standalone: true}">
+
+        <button type="submit">Update</button>
+    </form>
+
+
+</div>
+<app-default-footer></app-default-footer>
