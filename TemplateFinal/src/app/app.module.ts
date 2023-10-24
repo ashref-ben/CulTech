@@ -45,6 +45,7 @@ import { EventEditComponent } from './views/event-edit/event-edit.component';
 import { ParticipationListComponent } from './views/participation-list/participation-list.component';
 import { ParticipationAddComponent } from './views/participation-add/participation-add.component';
 
+
 const APP_CONTAINERS = [
   DefaultFooterComponent,
   DefaultHeaderComponent,

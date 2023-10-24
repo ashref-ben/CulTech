@@ -49,10 +49,14 @@ export class AuthService {
     localStorage.setItem('jwt',this.accessToken)
     let decodedJwt: any = jwtDecode(this.accessToken);
     this.username = decodedJwt.sub;
-    this.id = decodedJwt.userId;
+    this.id = decodedJwt.id;
     this.roles = decodedJwt.roles;
+    localStorage.setItem('username', this.username);
+    localStorage.setItem('id', this.id);
+    console.log(this.id);
     console.log(this.roles);
-    this.redirectBasedOnRoles();
+    this.route.navigateByUrl("/blog/blog"); 
+    //this.redirectBasedOnRoles();
   }
   private redirectBasedOnRoles() {
     if (this.roles.includes("SUPER-ADMIN")) {

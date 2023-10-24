@@ -11,63 +11,53 @@ import { EventAddComponent } from './views/event-add/event-add.component';
 import { EventListComponent } from './views/event-list/event-list.component';
 import { ParticipationListComponent } from './views/participation-list/participation-list.component';
 
+
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
-  },
   {
     path: '',
     component: DefaultLayoutComponent,
     data: {
       title: 'Home'
     },
+    
     children: [
+      
       {
-        path: 'dashboard',
+
+        path: 'AddClaim',
+
         loadChildren: () =>
-          import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+          import('./views/AddClaim/AddClaim.module').then((m) => m.AddClaimModule)
+      },
+        {
+        path: 'ClaimsList',
+        loadChildren: () =>
+          import('./views/ClaimsList/ClaimsList.module').then((m) => m.ClaimsListModule)
       },
       {
-        path: 'theme',
+        path: 'EventClaimsDetails/:claimId',
         loadChildren: () =>
-          import('./views/theme/theme.module').then((m) => m.ThemeModule)
+          import('./views/EventClaimsDetails/EventClaimsDetails.module').then((m) => m.EventClaimsDetailsModule)
       },
       {
-        path: 'base',
+        path: 'PartnershipClaimsDetails/:claimId',
         loadChildren: () =>
-          import('./views/base/base.module').then((m) => m.BaseModule)
+          import('./views/PartnershipClaimsDetails/PartnershipClaimsDetails.module').then((m) => m.PartnershipClaimsDetailsModule)
       },
       {
-        path: 'buttons',
+        path: 'BlogClaimsDetails/:claimId',
         loadChildren: () =>
-          import('./views/buttons/buttons.module').then((m) => m.ButtonsModule)
+          import('./views/BlogClaimsDetails/BlogClaimsDetails.module').then((m) => m.BlogClaimsDetailsModule)
       },
       {
-        path: 'forms',
+        path: 'ExchangeProgramClaimsDetails/:claimId',
         loadChildren: () =>
-          import('./views/forms/forms.module').then((m) => m.CoreUIFormsModule)
+          import('./views/ProgramExchangeClaimsDetails/ProgramExchangeClaimsDetails.module').then((m) => m.ProgramExchangeClaimsDetailsModule)
       },
       {
-        path: 'charts',
+        path: 'blog',
         loadChildren: () =>
-          import('./views/charts/charts.module').then((m) => m.ChartsModule)
-      },
-      {
-        path: 'icons',
-        loadChildren: () =>
-          import('./views/icons/icons.module').then((m) => m.IconsModule)
-      },
-      {
-        path: 'notifications',
-        loadChildren: () =>
-          import('./views/notifications/notifications.module').then((m) => m.NotificationsModule)
-      },
-      {
-        path: 'widgets',
-        loadChildren: () =>
-          import('./views/widgets/widgets.module').then((m) => m.WidgetsModule)
+          import('./views/blog-module/blog-module.module').then((m) => m.BlogModuleModule)
       },
       {
         path: 'pages',
