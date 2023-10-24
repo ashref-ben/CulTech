@@ -9,8 +9,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
         <module name="partenariat" />
-        <module name="Gateway" />
         <module name="Comments" />
+        <module name="Gateway" />
         <module name="Reactions" />
         <module name="Event" />
         <module name="AppUser" />
