@@ -1,22 +1,11 @@
 package com.example.AppUser.Controller;
 
-import com.example.AppUser.dtos.UserDto;
-import com.example.AppUser.models.ApplicationUser;
-import com.example.AppUser.services.UserService;
-import jakarta.mail.MessagingException;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.management.relation.RoleNotFoundException;
-import java.io.IOException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
@@ -24,16 +13,6 @@ import java.util.logging.Logger;
 @RequestMapping("/user")
 @CrossOrigin("*")
 public class UserController {
-
-    @Autowired
-    UserService userService;
-    @GetMapping("/hey")
-    public String getAnonymous() {
-        String ok="Im User";
-        System.out.println(ok);
-        return ok;
-    }
-
     @GetMapping("/list-user")
     @PreAuthorize("hasAnyRole('ADMIN','SUPER-ADMIN','USER','ORGANIZER')")// el kol
     public List<UserDto> getusers() {

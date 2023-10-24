@@ -8,20 +8,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
+        <module name="Participation" />
         <module name="Claims" />
         <module name="partenariat" />
-        <module name="Gateway" />
         <module name="Comments" />
+        <module name="Gateway" />
+        <module name="Prog-ech" />
         <module name="Reactions" />
         <module name="Event" />
         <module name="AppUser" />
         <module name="Blog" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Participation" target="17" />
-      <module name="Prog-ech" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -32,6 +30,8 @@
       <module name="EurekaServer" options="-parameters" />
       <module name="Event" options="-parameters" />
       <module name="Gateway" options="-parameters" />
+      <module name="Participation" options="-parameters" />
+      <module name="Prog-ech" options="-parameters" />
       <module name="Reactions" options="-parameters" />
       <module name="partenariat" options="-parameters" />
     </option>

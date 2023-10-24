@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { FormsModule } from '@angular/forms';
 
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
@@ -33,10 +34,16 @@ import {
   SharedModule,
   SidebarModule,
   TabsModule,
-  UtilitiesModule
+  UtilitiesModule,
+
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { EventListComponent } from './views/event-list/event-list.component';
+import { EventAddComponent } from './views/event-add/event-add.component';
+import { EventEditComponent } from './views/event-edit/event-edit.component';
+import { ParticipationListComponent } from './views/participation-list/participation-list.component';
+import { ParticipationAddComponent } from './views/participation-add/participation-add.component';
 
 
 const APP_CONTAINERS = [
@@ -46,7 +53,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent, ...APP_CONTAINERS, EventListComponent, EventAddComponent, EventEditComponent, ParticipationListComponent, ParticipationAddComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -74,7 +81,8 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    FormsModule
   ],
   providers: [
     {

@@ -6,6 +6,10 @@ import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
+import { EventEditComponent } from './views/event-edit/event-edit.component';
+import { EventAddComponent } from './views/event-add/event-add.component';
+import { EventListComponent } from './views/event-list/event-list.component';
+import { ParticipationListComponent } from './views/participation-list/participation-list.component';
 
 
 const routes: Routes = [
@@ -90,7 +94,12 @@ const routes: Routes = [
       title: 'Register Page'
     }
   },
-  {path: '**', redirectTo: 'dashboard'}
+  {path: '**', redirectTo: 'dashboard'},
+  { path: 'events', component: EventListComponent },
+  { path: 'events/add', component: EventAddComponent },
+  { path: 'events/edit/:id', component: EventEditComponent },
+  { path: 'participation/add', component: ParticipationListComponent },
+  { path: 'participations', component: ParticipationListComponent }
 ];
 
 @NgModule({

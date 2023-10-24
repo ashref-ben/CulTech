@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Admin Events List</h1>
+  <ul>
+    <li *ngFor="let event of events">
+      {{ event.Title }} - {{ event.Description }}
+      <button (click)="deleteEvent(event.id)">Delete</button>
+    </li>
+  </ul>
+</div>

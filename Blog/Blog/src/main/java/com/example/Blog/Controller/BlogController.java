@@ -1,7 +1,6 @@
 package com.example.Blog.Controller;
 
-
-
+import org.springframework.web.bind.annotation.RestController;
 import com.example.Blog.feign.UserDTO;
 import com.example.Blog.model.Blog;
 import com.example.Blog.services.Blogservice;
@@ -19,7 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/Blog")
-@CrossOrigin("*")
 public class BlogController {
     @GetMapping("/hey")
     public String getAnonymous() {
