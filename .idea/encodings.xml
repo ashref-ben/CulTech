@@ -4,18 +4,6 @@
     <file url="file://$PROJECT_DIR$/AppUser/AppUser/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AppUser/AppUser/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Blog/Blog/src/main/java" charset="UTF-8" />
-
-    <file url="file://$PROJECT_DIR$/EurekaServer/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/EurekaServer/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Event/Event/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Gateway/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Gateway/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Participation/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Participation2/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Participation2/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Prog-ech/Prog-ech/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/partenariat/partenariat/src/main/java" charset="UTF-8" />
-
     <file url="file://$PROJECT_DIR$/Blog/Blog/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Claims/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Claims/src/main/resources" charset="UTF-8" />
@@ -27,6 +15,12 @@
     <file url="file://$PROJECT_DIR$/Event/Event/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Participation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Participation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Participation2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Participation2/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Prog-ech/Prog-ech/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Prog-ech/Prog-ech/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Reactions/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Reactions/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/partenariat/partenariat/src/main/java" charset="UTF-8" />

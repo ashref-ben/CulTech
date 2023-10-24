@@ -11,21 +11,16 @@ import { Events } from '../../models/event';
 export class EventEditComponent {
   editedEvent!: Events;
   eventId: number = 0;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private eventsService: EventService
   ) {}
 
-
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
-      const id = params.get('id');
-      if (id !== null) {
-        this.eventId = +id; // Get the event ID from the route
-        this.loadEvent();
-      }
+      this.eventId = +params.get('id')!; // Get the event ID from the route
+      this.loadEvent();
     });
   }
 
@@ -39,8 +34,6 @@ export class EventEditComponent {
       }
     );
   }
-
-
 
   updateEvent() {
     this.eventsService.update(this.editedEvent).subscribe(
