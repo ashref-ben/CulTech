@@ -44,7 +44,7 @@ export class ProgramExchangeClaimsDetailsComponent implements OnInit {
       console.error(error);
     });
     this.loadFiles(claimId);
-    this.downloadFile(claimId);
+    //this.downloadFile(claimId);
   }
   loadFiles(claimId : number) {
     this.eventClaimService.getFilesByExchangeProgramClaimId(claimId).subscribe((data : File[]) => {

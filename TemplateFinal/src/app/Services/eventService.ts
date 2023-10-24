@@ -77,7 +77,7 @@ export class EventService {
       },
     });
   }
-  getFilesByEventClaimId(eventClaimId: number): Observable<File[]> {
+  getFilesByEventClaimId(eventClaimId: number): Observable<any[]> {
     return this.http.get<File[]>(`${this.baseUrl}/files/event-claim/${eventClaimId}`);
   }
   getBlogClaimDetails(claimId: number): Observable<any> {
@@ -104,7 +104,7 @@ export class EventService {
       },
     });
   }
-  getFilesByExchangeProgramClaimId(eventClaimId: number): Observable<File[]> {
+  getFilesByExchangeProgramClaimId(eventClaimId: number): Observable<any[]> {
     return this.http.get<File[]>(`${this.baseUrl}/files/exchangeProgram-claim/${eventClaimId}`);
   }
   getPartnershipClaimDetails(claimId: number): Observable<any> {
@@ -119,7 +119,7 @@ export class EventService {
       },
     });
   }
-  getFilesByPartnershipClaimId(eventClaimId: number): Observable<File[]> {
+  getFilesByPartnershipClaimId(eventClaimId: number): Observable<any[]> {
     return this.http.get<File[]>(`${this.baseUrl}/files/partnership-claim/${eventClaimId}`);
   }
 }
