@@ -22,6 +22,7 @@ public class File implements Serializable {
     private Long id;
     private String fileName;
     @Lob
+    @Column(length = 10485760)
     private byte[] fileData;
     @ManyToOne
     @JoinColumn(name = "event_claim_id")

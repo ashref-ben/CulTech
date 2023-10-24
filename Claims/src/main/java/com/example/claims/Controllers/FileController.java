@@ -132,15 +132,36 @@ public class FileController {
     }
     @GetMapping("/event-claim/{eventClaimId}")
     public List<File> getFilesByEventClaimId(@PathVariable Long eventClaimId) {
-        return fileService.getFilesByEventClaimId(eventClaimId);
+         List<File> lf =fileService.getFilesByEventClaimId(eventClaimId);
+        for (File l : lf) {
+            l.setFileData(null);
+            l.setPartnershipClaim(null);
+            l.setEventClaim(null);
+            l.setExchangeProgramClaim(null);
+        }
+        return lf;
     }
     @GetMapping("/partnership-claim/{eventClaimId}")
     public List<File> getFilesByPartnershipClaimId(@PathVariable Long eventClaimId) {
-        return fileService.getFilesByPartnershipClaimId(eventClaimId);
+        List<File> lf =fileService.getFilesByPartnershipClaimId(eventClaimId);
+        for (File l : lf) {
+            l.setFileData(null);
+            l.setPartnershipClaim(null);
+            l.setEventClaim(null);
+            l.setExchangeProgramClaim(null);
+        }
+        return lf;
     }
     @GetMapping("/exchangeProgram-claim/{eventClaimId}")
     public List<File> getFilesByExchangeProgramClaimId(@PathVariable Long eventClaimId) {
-        return fileService.getFilesByExchangeProgramClaimId(eventClaimId);
+        List<File> lf = fileService.getFilesByExchangeProgramClaimId(eventClaimId);
+        for (File l : lf) {
+            l.setFileData(null);
+            l.setPartnershipClaim(null);
+            l.setEventClaim(null);
+            l.setExchangeProgramClaim(null);
+        }
+        return lf;
     }
     @GetMapping("/download/{fileId}")
     public ResponseEntity<Resource> downloadFile(@PathVariable Long fileId) {
