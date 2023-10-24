@@ -6,6 +6,10 @@ import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
+import {AddProgrammeEchangeComponent} from "./application/add-programme-echange/add-programme-echange.component";
+import {ProgrammeEchangeComponent} from "./application/programme-echange/programme-echange.component";
+import {UpdateProgrammeComponent} from "./application/update-programme/update-programme.component";
+import {DisplayApplicationComponent} from "./application/display-application/display-application.component";
 
 
 const routes: Routes = [
@@ -20,12 +24,29 @@ const routes: Routes = [
     data: {
       title: 'Home'
     },
-    
+
     children: [
       {
         path: 'dashboard',
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+      },
+
+      {
+        path: 'addprogramme',
+        component: AddProgrammeEchangeComponent
+      },
+      {
+        path: 'updateprogramme/:id',
+        component: UpdateProgrammeComponent
+      },
+      {
+        path: 'programme',
+        component: ProgrammeEchangeComponent
+      },
+      {
+        path: 'display-application',
+        component: DisplayApplicationComponent
       },
       {
         path: 'AddClaim',

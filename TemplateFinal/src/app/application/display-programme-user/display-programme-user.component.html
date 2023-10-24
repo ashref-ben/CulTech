@@ -1,0 +1,19 @@
+<div class="programmes-container">
+    <div class="programme-card" *ngFor="let programme of programmes">
+      <img [src]="sanitizer.bypassSecurityTrustUrl('data:imageURL/jpg;base64,' +programme.picture)" class="programme-image">
+      
+
+      <div class="programme-details">
+        <h3>{{ programme.title }}</h3>
+        <p>{{ programme.description }}</p>
+        <p><strong>Région:</strong> {{ programme.region }}</p>
+        
+        <p><strong>Date de début:</strong> {{ programme.startDate }}</p>
+        <p><strong>Date de fin:</strong> {{ programme.endDate }}</p>
+        <div class="programme-actions">
+          <button (click)="applyProgramme(programme.id)" class="apply-btn">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

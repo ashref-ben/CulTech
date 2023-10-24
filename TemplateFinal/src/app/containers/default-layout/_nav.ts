@@ -10,7 +10,7 @@ export const navItems: INavData[] = [
       text: 'NEW'
     }
   },
- 
+
   {
     title: true,
     name: 'Theme'
@@ -40,6 +40,29 @@ export const navItems: INavData[] = [
     url: '/ClaimsList',
     iconComponent: { name: 'cil-cursor' }
   },
+  {
+    name: 'Application',
+    url: '/display-application',
+    iconComponent: { name: 'cil-cursor' }
+  },
+  {
+    name: 'Programme echange',
+    url: '/programme',
+    iconComponent: { name: 'cil-cursor' },
+    children:[
+      {
+        name: 'Displya programme',
+        url: '/programme'
+
+      },
+      {
+        name: 'Add programme',
+        url: '/addprogramme'
+
+      }
+    ]
+  },
+
   {
     name: 'Base',
     url: '/base',

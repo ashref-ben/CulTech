@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
@@ -37,6 +37,13 @@ import {
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { AddApplicationComponent } from './application/add-application/add-application.component';
+import { AddProgrammeEchangeComponent } from './application/add-programme-echange/add-programme-echange.component';
+import { DisplayApplicationComponent } from './application/display-application/display-application.component';
+import { DisplayProgrammeUserComponent } from './application/display-programme-user/display-programme-user.component';
+import { ProgrammeEchangeComponent } from './application/programme-echange/programme-echange.component';
+import { UpdateApplicationComponent } from './application/update-application/update-application.component';
+import { UpdateProgrammeComponent } from './application/update-programme/update-programme.component';
 
 
 const APP_CONTAINERS = [
@@ -46,7 +53,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent, ...APP_CONTAINERS, AddApplicationComponent, AddProgrammeEchangeComponent, DisplayApplicationComponent, DisplayProgrammeUserComponent, ProgrammeEchangeComponent, UpdateApplicationComponent, UpdateProgrammeComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -74,7 +81,8 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    FormsModule
   ],
   providers: [
     {

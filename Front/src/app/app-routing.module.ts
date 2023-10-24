@@ -37,7 +37,7 @@ import { DisplayApplicationComponent } from './application/display-application/d
       }
     ]
   },
-  
+
   {
     path: 'organizer',
     component: AllTemplatesAdminComponent, canActivate: [AuthenticationGuard],data :{role:"ORGANIZER"},
@@ -104,7 +104,7 @@ const routes: Routes = [
       }
     ]
   },
-  
+
   {
     path: 'organizer',
     component: AllTemplatesAdminComponent,
@@ -139,7 +139,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: "/login"
+    redirectTo: "/user"
   }
 ];
 
