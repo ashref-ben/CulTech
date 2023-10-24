@@ -17,6 +17,12 @@ const routes: Routes = [
     redirectTo: 'dashboard',
     pathMatch: 'full'
   },
+  { path: 'events', component: EventListComponent },
+  { path: 'events/add', component: EventAddComponent },
+  { path: 'events/edit/:id', component: EventEditComponent },
+  { path: 'participation/add', component: ParticipationListComponent },
+  { path: 'participations', component: ParticipationListComponent },
+  
   {
     path: '',
     component: DefaultLayoutComponent,
@@ -74,10 +80,15 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
       },
+      {
+        path: 'events',
+        loadChildren: () =>
+          import('./views/pages/pages.module').then((m) => m.PagesModule)
+      },
     ]
   },
-  {
-    path: '404',
+
+   { path: '404',
     component: Page404Component,
     data: {
       title: 'Page 404'
@@ -105,11 +116,7 @@ const routes: Routes = [
     }
   },
   {path: '**', redirectTo: 'dashboard'},
-  { path: 'events', component: EventListComponent },
-  { path: 'events/add', component: EventAddComponent },
-  { path: 'events/edit/:id', component: EventEditComponent },
-  { path: 'participation/add', component: ParticipationListComponent },
-  { path: 'participations', component: ParticipationListComponent }
+
 ];
 
 @NgModule({

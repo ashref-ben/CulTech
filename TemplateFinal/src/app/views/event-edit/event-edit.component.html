@@ -1,29 +1,78 @@
-<div class="container">
-  <h2>Edit Event</h2>
-  <form (ngSubmit)="updateEvent()">
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" id="title" name="title" class="form-control" [(ngModel)]="editedEvent.Title" required>
-    </div>
+<!--sidebar-->
+<c-sidebar
+  #sidebar="cSidebar"
+  class="d-print-none sidebar sidebar-fixed"
+  id="sidebar"
+  visible
+>
+  <c-sidebar-brand
+    [brandFull]="{
+      src: 'assets/img/brand/coreui-angular.svg',
+      width: 200,
+      height: 46,
+      alt: 'CoreUI Logo'
+    }"
+    [brandNarrow]="{
+      src: 'assets/img/brand/coreui-signet-white.svg',
+      width: 46,
+      height: 46,
+      alt: 'CoreUI Logo'
+    }"
+    routerLink="./"
+  />
 
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea id="description" name="description" class="form-control" [(ngModel)]="editedEvent.Description" required></textarea>
-    </div>
+  <ng-scrollbar pointerEventsMethod="scrollbar">
+    <c-sidebar-nav
+      [navItems]="navItems"
+      dropdownMode="close"
+    />
+  </ng-scrollbar>
+  <c-sidebar-toggler
+    *ngIf="!sidebar.narrow"
+    toggle="unfoldable"
+    cSidebarToggle="sidebar"
+  />
+</c-sidebar>
 
-    <div class="form-group">
-      <label for="date">Date</label>
-      <input type="date" id="date" name="date" class="form-control" [(ngModel)]="editedEvent.Date" required>
-    </div>
+<!--main-->
+<div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent">
+  <!--app-header-->
+  <app-default-header class="mb-4 d-print-none header header-sticky" position="sticky" sidebarId="sidebar" />
+  <!--app-body-->
+  <div class="body flex-grow-1 px-3">
+    <c-container breakpoint="lg" class="h-auto">
+      <div class="container">
+        <h2>Edit Event</h2>
+        <form (ngSubmit)="updateEvent()">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" class="form-control" [(ngModel)]="editedEvent.Title" required>
+          </div>
 
-    <div class="form-group">
-      <label for="price">Price</label>
-      <input type="number" id="price" name="price" class="form-control" [(ngModel)]="editedEvent.Price" required>
-    </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" class="form-control" [(ngModel)]="editedEvent.Description" required></textarea>
+          </div>
 
-    <!-- Add other event properties here -->
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" class="form-control" [(ngModel)]="editedEvent.Date" required>
+          </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a routerLink="/admin/events" class="btn btn-secondary">Cancel</a>
-  </form>
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" class="form-control" [(ngModel)]="editedEvent.Price" required>
+          </div>
+
+          <!-- Add other event properties here -->
+
+          <button type="submit" class="btn btn-primary">Save</button>
+          <a routerLink="/admin/events" class="btn btn-secondary">Cancel</a>
+        </form>
+      </div>
+      <router-outlet />
+    </c-container>
+  </div>
+  <!--app footer-->
+  <app-default-footer />
 </div>
