@@ -1,7 +1,9 @@
 package com.example.AppUser.Controller;
 
+import com.example.AppUser.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 @CrossOrigin("*")
 public class UserController {
+    private final UserService userService;
     @GetMapping("/list-user")
     @PreAuthorize("hasAnyRole('ADMIN','SUPER-ADMIN','USER','ORGANIZER')")// el kol
     public List<UserDto> getusers() {

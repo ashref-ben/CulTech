@@ -25,7 +25,7 @@ public class TokenService {
     private JwtDecoder jwtDecoder;
 
     public String generateJwt(Authentication auth){
-        ApplicationUser user = userService.getUserByUsername(auth.getName());
+        User user = userService.getUserByUsername(auth.getName());
         Instant now = Instant.now();
 
         String scope = auth.getAuthorities().stream()
